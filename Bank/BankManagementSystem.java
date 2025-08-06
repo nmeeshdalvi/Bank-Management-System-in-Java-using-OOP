@@ -3,12 +3,14 @@ import java.util.Scanner;
 
 class BankManagementSystem{
     public static void main(String args[]){
-        BankManagementSystem b = new BankManagementSystem();
-        b.run();
+        BankManagementSystem system = new BankManagementSystem();
+        system.run();
     }
     public void run(){
+        BankAccount b = new BankAccount(null , null, null, o);
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Bank Management System");
+        System.out.println("Please choose an option from the menu below:");
         int choice=0;
         do{
             System.out.println("1. Create New Account");
@@ -23,33 +25,34 @@ class BankManagementSystem{
             choice = sc.nextInt();
             switch(choice){
                 case 1:
-                    
+                    b.createAccount();
                     break;
                 case 2:
-                    
+                    b.displayAccount();
                     break;
                 case 3:
-                    
+                    b.deposit();
                     break;
                 case 4:
-                    
+                    b.withdraw();
                     break;
                 case 5:
-                    
+                    b.displayLoanDetials();
                     break;
                 case 6:
-                    
+                    b.makeLoanDetials();
                     break;
                 case 7:
-                    
+                    b.makeLoanPayment();
                     break;
                 case 8:
-                    
+                    System.out.println("Thank you for using the Bank Management System. Goodbye!");
                     break;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println("Invalid choice.Please try again.");
             }
         }
         while(choice !=8);
     }
+    
 }

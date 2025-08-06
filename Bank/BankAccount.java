@@ -1,5 +1,6 @@
 import java.util.Scanner;
 class BankAccount{
+    List<BankAccount> accounts = new ArrayList<>();
     private int accountNumber;
     private String type;
     private String holderName;
@@ -74,7 +75,17 @@ class BankAccount{
             int loanTerm = sc.nextInt();
             loanInterestRate = loanInterestRate / 100; // Convert percentage to decimal
             newAccount = new LoanAccount(accountNumber, type, holderName, balance, loanAmount, loanInterestRate, loanTerm);
+        } else{
+            System.out.println("Invalid account type. Please try again.");
+            return;
         }
+        class CurrentAccount extends BankAccount {
+            public CurrentAccount(int accountNumber, String holderName, double balance) {
+                super(accountNumber, "Current", holderName, balance);
+            }
+        }
+    
 
     }
 }
+
