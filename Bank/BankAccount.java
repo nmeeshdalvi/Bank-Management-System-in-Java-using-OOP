@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 class BankAccount{
     List<BankAccount> accounts = new ArrayList<>();
     private int accountNumber;
@@ -79,13 +81,113 @@ class BankAccount{
             System.out.println("Invalid account type. Please try again.");
             return;
         }
-        class CurrentAccount extends BankAccount {
+    }
+    class CurrentAccount extends BankAccount {
+            private double overdraftLimit;
             public CurrentAccount(int accountNumber, String holderName, double balance) {
                 super(accountNumber, "Current", holderName, balance);
             }
         }
-    
-
+    private BankAccount findAccount(int accountNumber){
+        for(BankAccount account : accounts){
+            if(account.getAccountNumber() == accountNumber){
+                return account;
+            }
+        }
+        return null;
     }
+    public void displayAccount(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Displaying account details");
+        System.out.println("Enter account number: ");
+        int accountNumber = sc.nextInt();
+        BankAccount account = findAccount(accountNumber);
+        if(account != null){
+            account.displayAccountDetials();
+        }else{
+            System.out.println("Account not found.");
+        }
+        sc.close();
+    }
+    public void displayAccountDetials(){
+        System.out.println("Account Details:");
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Type: " + type);
+        System.out.println("Account Holder Name: " + holderName);
+        System.out.println("Balance: " + balance);
+    }
+    public void deposit(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Depositing money into account");
+        System.out.print("Enter account number: ");
+        int accountNumber = sc.nextInt();
+        System.out.println("Enter amount to deposit: ");
+        double amount = sc.nextDouble();
+
+        BankAccount account = findAccount(accountNumber);
+        if(account != null){
+            account.deposit(amount);
+        } else{
+            System.out.println("Account not found.");
+        }
+        sc.close();
+    }
+    public void deposit(double amount){
+        balance+= amount;
+        System.out.println("Amount Deposited: " + amount);
+    }
+    public void withdraw(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Withdrawing money from account");
+        System.out.println("Enter account number: ");
+        int accountNumber = sc.nextInt();
+        System.out.println("Enter amount to withdraw: ");
+        double amount = sc.nextDouble();
+        
+        BankAccount account = findAccount(accountNumber);
+        if(account != null){
+            account.withdraw(amount);
+        } else{
+            System.out.println("Account not found.");
+        }
+        sc.close();
+    }
+    public boolean withdraw(double amount){
+        if(amount <= balance){
+            balance -= amount;
+            System.out.println("Amount Withdrawn: "+amount);
+            return true;
+        }else{
+            System.out.println("Insufficient balance.");
+            return false;
+        }
+    }
+    ///Create a new opation for applying interest to savings account
+    public void applyInterest(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Applying interest to savings account");
+        System.out.println("Enter account number: ");
+        int accountNumber =  sc.nextInt();
+        System.out.println("Enter the number of months to apply interest: ");
+        int months =  sc.nextInt();
+        BankAccount account = findAccount(accountNumber);
+        if(account instanceof SavingsAccount){
+            ((SavingsAccount)account).applyInterest(months);
+        }else{
+            System.out.println("Account not found or not a savings account.");
+        }
+        sc.close();
+    }
+    //creating  methods to display Loan detials and make payments towward loans
+    // public void displayLoanDetials(){
+    //     Scanner sc = new Scanner(System.in);
+    //     System.out.println("Displaying loan account detials");
+    //     System.out.println("Enter account number: ");
+    //     int accountNumber = sc.nextInt();
+
+    //     BankAccount account = findAccount(accountnumber);
+    //     if(account instanceof )
+    // }
+    // }
 }
 
