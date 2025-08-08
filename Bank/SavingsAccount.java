@@ -17,7 +17,7 @@ class SavingsAccount extends BankAccount {
                 //Calculate monthly interest rate from annual interest rate
                 double monthlyInterestRate = interestRate / 12 ;
                 //Calculate interest from given number pf months
-                double interest = getBalance() * monthlyinterestRate * months;
+                double interest = getBalance() * monthlyInterestRate * months;
                 //Add interesst to the balance
                 setBalance(getBalance()+ interest);
 

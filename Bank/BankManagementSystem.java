@@ -7,7 +7,7 @@ class BankManagementSystem{
         system.run();
     }
     public void run(){
-        BankAccount b = new BankAccount(null , null, null, );
+        BankAccount b = new BankAccount(0 , null, null, 0.0);
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Bank Management System");
         System.out.println("Please choose an option from the menu below:");
@@ -37,13 +37,13 @@ class BankManagementSystem{
                     b.withdraw();
                     break;
                 case 5:
-                    // b.displayLoanDetials();
+                    b.applyInterest();
                     break;
                 case 6:
-                   // b.makeLoanDetials();
+                    b.displayLoanDetials();
                     break;
                 case 7:
-                    //b.makeLoanPayment();
+                    b.makeLoanPayment();
                     break;
                 case 8:
                     System.out.println("Thank you for using the Bank Management System. Goodbye!");
